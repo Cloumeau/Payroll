@@ -1,0 +1,32 @@
+
+/***** BANKKKKKK */
+INSERT INTO bank VALUES ('WellsFargo', 1000, 100, 'New York');
+INSERT INTO bank VALUES ('Chase', 2000, 2000, 'New York');
+INSERT INTO bank VALUES ('Capital One', 3000, 100, 'New York');
+INSERT INTO bank VALUES ('TD', 4000, 100, 'New York');
+INSERT INTO bank VALUES ('Bank of America', 5000, 100, 'New York');
+INSERT INTO bank VALUES ('Citi', 6000, 100, 'New York');
+
+DROP TABLE bank CASCADE CONSTRAINTS;
+CREATE TABLE bank (
+  bankname varchar2(25) not null,
+  bankid      number(20) not null,
+  banksize    varchar2(15),
+  banklocation  varchar2(15),
+  primary key (bankname),
+  foreign key (bankid) references employee(bankid)
+);
+
+/*Select bank accounts of workers at this company */
+Select bankname from bank, employee, company1 where bankid =1000;
+Select bankname from bank, employee, company1 where bankid =2000;
+Select bankname from bank, employee, company1 where bankid =3000;
+Select bankname from bank, employee, company1 where bankid =4000;
+Select bankname from bank, employee, company1 where bankid =5000;
+Select bankname from bank, employee, company1 where bankid =6000;
+
+/* Add a new bank */
+Update bank Set bankname = 'AmericanBank' where bankid = 3000;
+
+/* Leave a bank */
+DELETE FROM bank WHERE bankid = 1000;
